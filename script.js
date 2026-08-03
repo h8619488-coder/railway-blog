@@ -26,10 +26,6 @@ function login(){
     document.getElementById("password").value;
 
 
-
-    if(id === "haruki" && password === "1234"){
-
-
         localStorage.setItem(
             "login",
             "true"
