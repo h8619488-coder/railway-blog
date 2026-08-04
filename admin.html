@@ -5,372 +5,118 @@
 
 <meta charset="UTF-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<title>管理画面 | 小6の鉄道ブログ</title>
 
-
-<title>
-管理画面 | 小6の鉄道ブログ
-</title>
-
-
-<link rel="stylesheet"
-href="style.css">
-
-
-<link rel="icon"
-href="images/icon.png">
-
+<link rel="stylesheet" href="style.css">
 
 </head>
 
-
-
-
 <body onload="checkLogin();loadAdminArticles();">
-
-
-
-
 
 <header>
 
+<h1>🚆 小6の鉄道ブログ</h1>
 
-<h1>
-
-🚆 小6の鉄道ブログ
-
-</h1>
-
-
-<p>
-
-記事管理
-
-</p>
-
+<p>管理画面</p>
 
 </header>
 
-
-
-
-
-
 <nav>
 
+<a href="index.html">🏠 ホーム</a>
 
-<a href="index.html">
+<a href="articles.html">📰 記事一覧</a>
 
-🏠 ホーム
-
-</a>
-
-
-<a href="articles.html">
-
-📰 記事一覧
-
-</a>
-
-
-<a href="#"
-onclick="logout()">
-
-🚪 ログアウト
-
-</a>
-
+<a href="#" onclick="logout()">🚪 ログアウト</a>
 
 </nav>
 
-
-
-
-
-
 <main>
-
-
-
-
 
 <div class="admin-box">
 
+<h2>📝 新しい記事を作成</h2>
 
-
-
-
-<h2>
-
-📝 記事作成
-
-</h2>
-
-
-
-
-
-
-<label>
-
-タイトル
-
-</label>
-
-
+<label>タイトル</label>
 
 <input
-
+type="text"
 id="title"
-
 placeholder="記事タイトル">
 
+<label>ホーム表示用紹介文</label>
 
+<textarea
+id="description"
+rows="3"
+placeholder="トップページや記事一覧に表示する短い紹介文"></textarea>
 
+<label>記事本文</label>
 
+<textarea
+id="content"
+rows="10"
+placeholder="詳しい記事を書いてください"></textarea>
 
-
-
-<label>
-
-画像
-
-</label>
-
-
+<label>画像URL</label>
 
 <input
-
+type="text"
 id="image"
+placeholder="images/e5.jpg">
 
-type="file"
-
-accept="image/*"
-
-onchange="previewImage()">
-
-
-
-
-
-
-<img
-
-id="preview"
-
-class="preview-image">
-
-
-
-
-
-
-
-<label>
-
-ホーム表示用説明
-
-</label>
-
-
-
-<textarea
-
-id="description"
-
-placeholder="短い紹介文">
-
-</textarea>
-
-
-
-
-
-
-
-<label>
-
-記事本文
-
-</label>
-
-
-
-<textarea
-
-id="content"
-
-placeholder="記事本文">
-
-</textarea>
-
-
-
-
-
-
-
-
-<label>
-
-カテゴリー
-
-</label>
-
-
+<label>カテゴリー</label>
 
 <select id="category">
 
+<option value="車両紹介">🚄 車両紹介</option>
 
-<option value="車両紹介">
+<option value="駅紹介">🚉 駅紹介</option>
 
-🚄 車両紹介
-
-</option>
-
-
-<option value="駅紹介">
-
-🚉 駅紹介
-
-</option>
-
-
-<option value="プラレール">
-
-🚂 プラレール
-
-</option>
-
-
+<option value="プラレール">🚂 プラレール</option>
 
 </select>
 
-
-
-
-
-
-
-<label>
-
-公開状態
-
-</label>
-
-
+<label>公開状態</label>
 
 <select id="status">
 
+<option value="公開">🌍 公開</option>
 
-<option value="公開">
-
-🌐 公開
-
-</option>
-
-
-<option value="下書き">
-
-📝 下書き
-
-</option>
-
-
+<option value="下書き">📝 下書き</option>
 
 </select>
 
+<button onclick="saveArticle()">
 
-
-
-
-
-<button class="admin-button"
-onclick="saveArticle()">
-
-記事を保存
+🚄 記事を公開
 
 </button>
 
-
-
-
-
 </div>
-
-
-
-
-
-
-
 
 <div class="admin-box">
 
-
-
-
-
-<h2>
-
-📚 記事管理
-
-</h2>
-
-
-
+<h2>📚 公開済みの記事</h2>
 
 <div id="adminArticles">
 
-
 </div>
 
-
-
-
 </div>
-
-
-
-
-
-
 
 </main>
 
-
-
-
-
-
-
 <footer>
 
-
-<p>
-
-© 2026 小6の鉄道ブログ
-
-</p>
-
+<p>© 2026 小6の鉄道ブログ</p>
 
 </footer>
 
-
-
-
-
-
-
 <script src="script.js"></script>
 
-
-
-
-
 </body>
-
 
 </html>

@@ -5,30 +5,13 @@
 
 <meta charset="UTF-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<title>記事一覧 | 小6の鉄道ブログ</title>
 
-
-<title>
-記事一覧 | 小6の鉄道ブログ
-</title>
-
-
-<meta name="description"
-content="小6の鉄道ブログの記事一覧ページ">
-
-
-<link rel="stylesheet"
-href="style.css">
-
-
-<link rel="icon"
-href="images/icon.png">
-
+<link rel="stylesheet" href="style.css">
 
 </head>
-
 
 
 <body>
@@ -36,55 +19,33 @@ href="images/icon.png">
 
 <header>
 
-
 <h1>
-
 🚆 小6の鉄道ブログ
-
 </h1>
 
-
 <p>
-
-記事一覧
-
+📰 記事一覧
 </p>
-
 
 </header>
 
 
 
 
-
 <nav>
 
-
 <a href="index.html">
-
 🏠 ホーム
-
 </a>
 
 
 <a href="articles.html">
-
 📰 記事一覧
-
-</a>
-
-
-<a href="contact.html">
-
-📩 お問い合わせ
-
 </a>
 
 
 <a href="login.html">
-
 🔐 管理者
-
 </a>
 
 
@@ -94,18 +55,15 @@ href="images/icon.png">
 
 
 
-
 <main>
-
 
 
 
 <h2 class="page-title">
 
-📰 全記事
+📰 全記事一覧
 
 </h2>
-
 
 
 
@@ -114,16 +72,12 @@ href="images/icon.png">
 
 
 <input
-
 id="search"
-
 type="text"
-
 placeholder="記事を検索">
 
 
-<button class="button"
-onclick="searchArticle()">
+<button onclick="searchArticle()">
 
 検索
 
@@ -136,41 +90,39 @@ onclick="searchArticle()">
 
 
 
-
-
 <div style="text-align:center;">
 
 
-<button class="button"
-onclick="filterCategory('全部')">
+<a class="category-button"
+onclick="filterCategory('all')">
 
-全部
+すべて
 
-</button>
+</a>
 
 
-<button class="button"
+<a class="category-button"
 onclick="filterCategory('車両紹介')">
 
 🚄 車両紹介
 
-</button>
+</a>
 
 
-<button class="button"
+<a class="category-button"
 onclick="filterCategory('駅紹介')">
 
 🚉 駅紹介
 
-</button>
+</a>
 
 
-<button class="button"
+<a class="category-button"
 onclick="filterCategory('プラレール')">
 
 🚂 プラレール
 
-</button>
+</a>
 
 
 </div>
@@ -179,14 +131,10 @@ onclick="filterCategory('プラレール')">
 
 
 
-
-
-<section id="newArticle"
-class="article-list">
+<section id="newArticle">
 
 
 </section>
-
 
 
 

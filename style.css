@@ -1,11 +1,3 @@
-/* =================================
-   小6の鉄道ブログ v1.0
-   style.css
-================================= */
-
-
-/* 基本設定 */
-
 *{
     box-sizing:border-box;
 }
@@ -20,12 +12,11 @@ body{
     "Meiryo",
     sans-serif;
 
-    background:#eef6ff;
+    background:#eef5ff;
 
     color:#333;
 
 }
-
 
 
 /* ヘッダー */
@@ -34,8 +25,8 @@ header{
 
     background:
     linear-gradient(
-    rgba(0,70,140,.75),
-    rgba(0,70,140,.75)
+    rgba(0,80,160,0.65),
+    rgba(0,80,160,0.65)
     ),
     url("images/header.jpg");
 
@@ -54,12 +45,12 @@ header{
 
 header h1{
 
-    font-size:42px;
+    font-size:40px;
 
     margin:0;
 
     text-shadow:
-    2px 2px 5px #000;
+    2px 2px 5px #333;
 
 }
 
@@ -72,7 +63,7 @@ header p{
 
 
 
-/* ナビゲーション */
+/* ナビ */
 
 nav{
 
@@ -82,35 +73,36 @@ nav{
 
     justify-content:center;
 
-    flex-wrap:wrap;
-
     gap:15px;
 
     padding:15px;
+
+    flex-wrap:wrap;
 
 }
 
 
 nav a{
 
+    background:white;
+
     color:#003b73;
 
-    background:white;
+    text-decoration:none;
 
     padding:12px 25px;
 
     border-radius:30px;
-
-    text-decoration:none;
 
     font-weight:bold;
 
 }
 
 
+
 nav a:hover{
 
-    background:#bde3ff;
+    background:#bde2ff;
 
 }
 
@@ -120,7 +112,7 @@ nav a:hover{
 
 main{
 
-    max-width:1100px;
+    max-width:1000px;
 
     margin:auto;
 
@@ -130,20 +122,45 @@ main{
 
 
 
-/* タイトル */
+/* ようこそ */
 
-.page-title{
+.hero{
 
-    text-align:center;
+    background:white;
 
-    color:#0066cc;
+    max-width:800px;
 
-    font-size:32px;
+    margin:0 auto;
 
-    margin:40px 0;
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:
+
+    0 8px 20px
+
+    rgba(0,0,0,0.15);
 
 }
 
+
+.hero h2{
+
+    color:#0066cc;
+
+    text-align:center;
+
+}
+
+
+/* 記事エリア */
+
+.articles{
+
+    margin-top:60px;
+
+}
 
 
 /* 共通カード */
@@ -156,131 +173,110 @@ main{
 
     padding:20px;
 
+    margin:20px 0;
+
     box-shadow:
 
     0 8px 20px
 
-    rgba(0,0,0,.15);
-
-    transition:.3s;
+    rgba(0,0,0,0.15);
 
 }
 
 
-.card:hover{
+.card h3{
 
-    transform:translateY(-5px);
+    color:#0066cc;
 
 }
 
-
-
-/* 画像 */
 
 .card img{
 
     width:100%;
 
-    height:200px;
+    height:180px;
 
     object-fit:cover;
 
     border-radius:15px;
 
 }
+/* 記事一覧カード */
+
+#newArticle{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+
+#newArticle .card{
+
+    width:300px;
+
+    padding:15px;
+
+    margin:0;
+
+}
 
 
 
-/* ボタン */
+#newArticle .card img{
 
-.button{
+    height:160px;
 
-    display:inline-block;
+}
+
+
+
+/* 記事リンク */
+
+.card a{
+
+    display:block;
 
     background:#0066cc;
 
     color:white;
 
-    padding:12px 25px;
-
-    border-radius:30px;
+    text-align:center;
 
     text-decoration:none;
 
-    border:none;
+    padding:12px;
 
-    cursor:pointer;
+    border-radius:30px;
+
+    margin-top:15px;
 
 }
 
 
-.button:hover{
+.card a:hover{
 
     background:#004080;
 
 }
-/* ================================
-   記事カード・一覧
-================================ */
-
-
-.article-list{
-
-    display:grid;
-
-    grid-template-columns:
-
-    repeat(auto-fit,minmax(280px,1fr));
-
-    gap:25px;
-
-}
 
 
 
-.category{
-
-    display:inline-block;
-
-    background:#0066cc;
-
-    color:white;
-
-    padding:6px 15px;
-
-    border-radius:20px;
-
-    font-size:14px;
-
-    margin-bottom:10px;
-
-}
-
-
-
-.date{
-
-    color:#777;
-
-    font-size:14px;
-
-}
-
-
-
-.description{
-
-    line-height:1.8;
-
-}
-
-
-
-/* 記事本文 */
+/* 記事ページ */
 
 .article-page{
 
     background:white;
+
+    max-width:850px;
+
+    margin:40px auto;
 
     padding:35px;
 
@@ -290,20 +286,18 @@ main{
 
     0 8px 20px
 
-    rgba(0,0,0,.15);
+    rgba(0,0,0,0.15);
 
 }
-
 
 
 .article-page h2{
 
     color:#0066cc;
 
-    font-size:35px;
+    font-size:32px;
 
 }
-
 
 
 .article-page img{
@@ -317,7 +311,6 @@ main{
 }
 
 
-
 .article-content{
 
     font-size:18px;
@@ -328,53 +321,68 @@ main{
 
 
 
-/* ================================
-   検索
-================================ */
+/* 投稿日 */
 
+.date{
 
-.search-box{
+    color:#777;
 
-    display:flex;
-
-    gap:10px;
-
-    max-width:600px;
-
-    margin:20px auto;
+    font-size:14px;
 
 }
 
 
 
-.search-box input{
+/* カテゴリー */
 
-    flex:1;
+.category{
+
+    color:#0066cc;
+
+    font-weight:bold;
+
+}
+
+
+
+/* 戻るボタン */
+
+.back-button{
+
+    display:block;
+
+    background:#0066cc;
+
+    color:white;
+
+    text-align:center;
 
     padding:12px;
 
-    border-radius:25px;
+    border-radius:30px;
 
-    border:
+    text-decoration:none;
 
-    2px solid #ddd;
+    margin-top:30px;
 
-    font-size:16px;
+}
+
+
+.back-button:hover{
+
+    background:#004080;
 
 }
 
 
 
-/* ================================
-   管理画面
-================================ */
-
+/* 管理画面 */
 
 .admin-box{
 
     background:white;
 
-    max-width:850px;
+    max-width:800px;
 
     margin:30px auto;
 
@@ -386,19 +394,34 @@ main{
 
     0 8px 20px
 
-    rgba(0,0,0,.15);
+    rgba(0,0,0,0.15);
 
 }
-
 
 
 .admin-box h2{
 
     color:#0066cc;
 
+    border-left:
+
+    8px solid #0066cc;
+
+    padding-left:15px;
+
 }
 
 
+.admin-box label{
+
+    display:block;
+
+    margin-top:20px;
+
+    font-weight:bold;
+
+}
+/* 入力フォーム */
 
 .admin-box input,
 .admin-box textarea,
@@ -408,67 +431,67 @@ main{
 
     padding:12px;
 
-    margin:10px 0;
+    margin-top:8px;
 
     border-radius:10px;
 
-    border:
-
-    2px solid #ddd;
+    border:2px solid #ddd;
 
     font-size:16px;
 
 }
 
 
-
 .admin-box textarea{
 
-    min-height:150px;
+    resize:vertical;
 
 }
 
 
 
-.admin-button{
+/* ボタン */
 
-    width:100%;
+button,
+.save-button{
 
     background:#0066cc;
 
     color:white;
 
-    padding:15px;
-
     border:none;
+
+    padding:12px 30px;
 
     border-radius:30px;
 
+    font-size:16px;
+
     cursor:pointer;
 
-    font-size:18px;
+    margin-top:20px;
 
 }
 
 
-
-.admin-button:hover{
+button:hover,
+.save-button:hover{
 
     background:#004080;
 
 }
-/* ================================
-   ログイン
-================================ */
 
+
+
+/* ログイン画面 */
 
 .login-box{
 
-    max-width:450px;
+    background:white;
+
+    max-width:400px;
 
     margin:50px auto;
-
-    background:white;
 
     padding:35px;
 
@@ -478,9 +501,10 @@ main{
 
     0 8px 20px
 
-    rgba(0,0,0,.15);
+    rgba(0,0,0,0.15);
 
 }
+
 
 
 .login-box h2{
@@ -490,6 +514,7 @@ main{
     color:#0066cc;
 
 }
+
 
 
 .login-box input{
@@ -508,125 +533,28 @@ main{
 
 
 
+/* 検索 */
 
-/* ================================
-   コメント
-================================ */
+.search-box{
 
+    max-width:500px;
 
-.comment-box{
-
-    background:white;
-
-    padding:25px;
-
-    margin-top:40px;
-
-    border-radius:20px;
-
-    box-shadow:
-
-    0 5px 15px
-
-    rgba(0,0,0,.1);
-
-}
-
-
-
-.comment{
-
-    border-bottom:
-
-    1px solid #ddd;
-
-    padding:15px 0;
-
-}
-
-
-
-.comment-name{
-
-    font-weight:bold;
-
-    color:#0066cc;
-
-}
-
-
-
-
-/* ================================
-   人気記事
-================================ */
-
-
-.rank-item{
+    margin:20px auto;
 
     display:flex;
 
-    align-items:center;
-
-    gap:15px;
-
-    background:white;
-
-    padding:15px;
-
-    margin:10px 0;
-
-    border-radius:15px;
+    gap:10px;
 
 }
 
 
+.search-box input{
 
-.rank-number{
-
-    font-size:25px;
-
-    font-weight:bold;
-
-    color:#0066cc;
-
-}
-
-
-
-
-/* ================================
-   お問い合わせ
-================================ */
-
-
-.contact-box{
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:
-
-    0 8px 20px
-
-    rgba(0,0,0,.15);
-
-}
-
-
-.contact-box input,
-.contact-box textarea{
-
-    width:100%;
+    flex:1;
 
     padding:12px;
 
-    margin:10px 0;
-
-    border-radius:10px;
+    border-radius:25px;
 
     border:2px solid #ddd;
 
@@ -634,15 +562,44 @@ main{
 
 
 
-.contact-box textarea{
+.search-box button{
 
-    height:150px;
+    margin:0;
 
 }
-/* ================================
-   フッター
-================================ */
 
+
+
+/* カテゴリーボタン */
+
+.category-button{
+
+    display:inline-block;
+
+    background:#0066cc;
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    margin:5px;
+
+}
+
+
+.category-button:hover{
+
+    background:#004080;
+
+}
+
+
+
+/* フッター */
 
 footer{
 
@@ -652,114 +609,12 @@ footer{
 
     text-align:center;
 
-    padding:30px;
+    padding:25px;
 
     margin-top:60px;
 
 }
-
-
-
-
-
-/* ================================
-   ダークモード
-================================ */
-
-
-.dark{
-
-    background:#111;
-
-    color:white;
-
-}
-
-
-
-.dark .card,
-.dark .article-page,
-.dark .admin-box,
-.dark .login-box,
-.dark .comment-box,
-.dark .contact-box{
-
-    background:#222;
-
-    color:white;
-
-}
-
-
-
-
-/* ================================
-   画像アップロード表示
-================================ */
-
-
-.preview-image{
-
-    width:200px;
-
-    height:150px;
-
-    object-fit:cover;
-
-    border-radius:15px;
-
-    margin-top:15px;
-
-}
-
-
-
-
-
-/* ================================
-   アニメーション
-================================ */
-
-
-.fade{
-
-    animation:
-
-    fadeIn .5s;
-
-}
-
-
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(20px);
-
-    }
-
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-
-
-
-/* ================================
-   スマホ対応
-================================ */
-
+/* スマホ対応 */
 
 @media(max-width:600px){
 
@@ -774,6 +629,13 @@ footer{
     header h1{
 
         font-size:28px;
+
+    }
+
+
+    header p{
+
+        font-size:15px;
 
     }
 
@@ -806,84 +668,141 @@ footer{
 
 
 
+    .hero{
+
+        padding:25px;
+
+    }
+
+
+
+    #newArticle{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+
+
+    #newArticle .card{
+
+        width:100%;
+
+    }
+
+
+
     .article-page{
+
+        padding:20px;
+
+        margin:20px auto;
+
+    }
+
+
+
+    .article-page h2{
+
+        font-size:24px;
+
+    }
+
+
+
+    .admin-box{
 
         padding:20px;
 
     }
 
 
-    .article-page h2{
-
-        font-size:25px;
-
-    }
-
-
-
-    .search-box{
-
-        flex-direction:column;
-
-    }
-
-
-
-    .card img{
-
-        height:160px;
-
-    }
-
 
 }
 
 
 
-/* ================================
-   Google検索用
-================================ */
+/* アニメーション */
 
 
-.sr-only{
+.card{
 
-    position:absolute;
+    transition:
 
-    width:1px;
+    transform 0.3s,
 
-    height:1px;
-
-    overflow:hidden;
+    box-shadow 0.3s;
 
 }
 
 
 
-/* ================================
-   ページ切替
-================================ */
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+    0 12px 25px
+
+    rgba(0,0,0,0.25);
+
+}
 
 
-.page-button{
 
-    background:#0066cc;
+/* 画像表示 */
+
+
+img{
+
+    max-width:100%;
+
+}
+
+
+
+/* 選択中リンク */
+
+a:visited{
+
+    color:inherit;
+
+}
+
+
+
+/* 管理者ログイン文字 */
+
+footer a{
 
     color:white;
 
-    padding:10px 20px;
-
-    border-radius:20px;
-
     text-decoration:none;
 
-    margin:5px;
+}
+
+
+footer a:hover{
+
+    color:#bde2ff;
 
 }
 
 
 
-.page-button:hover{
+/* ページタイトル */
 
-    background:#004080;
+.page-title{
+
+    text-align:center;
+
+    color:#0066cc;
+
+    font-size:30px;
+
+    margin-bottom:30px;
 
 }

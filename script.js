@@ -1,16 +1,6 @@
-/* =================================
-   小6の鉄道ブログ v1.0
-   script.js
-================================= */
-
-
-/* Firebase設定後にここへ追加 */
-
-
-
-// ================================
-// 記事取得
-// ================================
+// =======================
+// 記事データ取得
+// =======================
 
 function getArticles(){
 
@@ -22,27 +12,18 @@ function getArticles(){
 
 
 
-
-// ================================
+// =======================
 // ログイン
-// ================================
+// =======================
 
 function login(){
 
-
-    const id =
+    let id =
     document.getElementById("id").value;
 
 
-    const password =
+    let password =
     document.getElementById("password").value;
-
-
-
-    if(
-        id === "admin" &&
-        password === "1234"
-    ){
 
 
         localStorage.setItem(
@@ -51,34 +32,34 @@ function login(){
         );
 
 
+        alert("ログイン成功！");
+
+
         location.href="admin.html";
 
 
     }else{
 
 
-        alert(
-        "IDまたはパスワードが違います"
-        );
+        alert("IDまたはパスワードが違います");
 
 
     }
-
 
 }
 
 
 
-
-// ================================
+// =======================
 // ログアウト
-// ================================
+// =======================
 
 function logout(){
 
-    localStorage.removeItem(
-        "login"
-    );
+    localStorage.removeItem("login");
+
+
+    alert("ログアウトしました");
 
 
     location.href="login.html";
@@ -87,21 +68,22 @@ function logout(){
 
 
 
-
-// ================================
+// =======================
 // ログイン確認
-// ================================
+// =======================
 
 function checkLogin(){
 
 
     if(
-        localStorage.getItem("login")
-        !== "true"
+    localStorage.getItem("login")
+    !== "true"
     ){
+
 
         location.href="login.html";
 
+
     }
 
 
@@ -109,59 +91,19 @@ function checkLogin(){
 
 
 
-
-
-// ================================
-// 画像プレビュー
-// ================================
-
-function previewImage(){
-
-
-    const file =
-    document.getElementById("image")
-    .files[0];
-
-
-
-    if(!file){
-
-        return;
-
-    }
-
-
-
-    const reader =
-    new FileReader();
-
-
-
-    reader.onload=function(e){
-
-
-        document.getElementById(
-        "preview"
-        ).src=e.target.result;
-
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-
-}
-/* ================================
-   記事保存
-================================ */
-
+// =======================
+// 記事保存
+// =======================
 
 function saveArticle(){
 
 
     let title =
     document.getElementById("title").value;
+
+
+    let image =
+    document.getElementById("image").value;
 
 
     let description =
@@ -181,8 +123,17 @@ function saveArticle(){
 
 
 
-    let image =
-    document.getElementById("image").value;
+    let date = new Date();
+
+
+    let postDate =
+
+    date.getFullYear()
+    +"年"
+    +(date.getMonth()+1)
+    +"月"
+    +date.getDate()
+    +"日";
 
 
 
@@ -191,41 +142,23 @@ function saveArticle(){
 
 
 
-    let article={
-
-
-        id:Date.now(),
-
+    articles.push({
 
         title:title,
 
+        image:image,
 
         description:description,
 
-
         content:content,
-
 
         category:category,
 
-
-        image:image,
-
-
         status:status,
 
+        date:postDate
 
-        views:0,
-
-
-        date:new Date()
-        .toLocaleDateString("ja-JP")
-
-    };
-
-
-
-    articles.push(article);
+    });
 
 
 
@@ -239,9 +172,7 @@ function saveArticle(){
 
 
 
-    alert(
-    "記事を保存しました"
-    );
+    alert("記事を保存しました！");
 
 
 
@@ -249,25 +180,15 @@ function saveArticle(){
 
 
 }
-
-
-
-
-
-
-/* ================================
-   記事一覧表示
-================================ */
-
+// =======================
+// 記事一覧表示
+// =======================
 
 function loadArticle(){
 
 
-    const area =
-    document.getElementById(
-    "newArticle"
-    );
-
+    let area =
+    document.getElementById("newArticle");
 
 
     if(!area){
@@ -287,14 +208,13 @@ function loadArticle(){
 
 
 
-    articles.reverse()
-    .forEach(function(article,index){
+    articles.forEach(function(article,index){
 
 
 
-        if(
-        article.status==="下書き"
-        ){
+        // 下書きは表示しない
+
+        if(article.status && article.status !== "公開"){
 
             return;
 
@@ -305,7 +225,7 @@ function loadArticle(){
         area.innerHTML += `
 
 
-        <article class="card fade">
+        <article class="card">
 
 
         ${article.image ?
@@ -320,11 +240,11 @@ function loadArticle(){
 
 
 
-        <span class="category">
+        <p class="category">
 
-        ${article.category}
+        📂 ${article.category || "未分類"}
 
-        </span>
+        </p>
 
 
 
@@ -338,7 +258,7 @@ function loadArticle(){
 
         <p class="date">
 
-        ${article.date}
+        投稿日：${article.date || ""}
 
         </p>
 
@@ -346,16 +266,16 @@ function loadArticle(){
 
         <p>
 
-        ${article.description}
+        ${article.description || ""}
 
         </p>
 
 
 
-        <a class="button"
-        onclick="openArticle(${article.id})">
+        <a href="article.html"
+        onclick="openArticle(${index})">
 
-        記事を見る
+        記事を読む →
 
         </a>
 
@@ -376,41 +296,11 @@ function loadArticle(){
 
 
 
-// ================================
+// =======================
 // 記事を開く
-// ================================
+// =======================
 
-
-function openArticle(id){
-
-
-    localStorage.setItem(
-
-        "openArticle",
-
-        id
-
-    );
-
-
-    location.href="article.html";
-
-
-}
-/* ================================
-   記事ページ表示
-================================ */
-
-
-function loadArticlePage(){
-
-
-    const id =
-
-    localStorage.getItem(
-    "openArticle"
-    );
-
+function openArticle(index){
 
 
     let articles =
@@ -419,10 +309,38 @@ function loadArticlePage(){
 
 
     let article =
+    articles[index];
 
-    articles.find(
 
-        a => a.id == id
+
+    localStorage.setItem(
+
+        "openArticle",
+
+        JSON.stringify(article)
+
+    );
+
+
+
+}
+
+
+
+
+
+// =======================
+// 記事ページ表示
+// =======================
+
+function loadArticlePage(){
+
+
+    let article =
+
+    JSON.parse(
+
+    localStorage.getItem("openArticle")
 
     );
 
@@ -436,25 +354,10 @@ function loadArticlePage(){
 
 
 
-    // 閲覧数アップ
-
-    article.views++;
-
-
-
-    localStorage.setItem(
-
-        "articles",
-
-        JSON.stringify(articles)
-
-    );
-
-
-
     document.getElementById(
     "articleTitle"
     ).innerHTML =
+
     article.title;
 
 
@@ -462,74 +365,52 @@ function loadArticlePage(){
     document.getElementById(
     "articleDate"
     ).innerHTML =
+
     "投稿日："+article.date;
-
-
-
-    document.getElementById(
-    "articleCategory"
-    ).innerHTML =
-    article.category;
 
 
 
     document.getElementById(
     "articleImage"
     ).src =
+
     article.image;
+
+
+
+    document.getElementById(
+    "articleCategory"
+    ).innerHTML =
+
+    "📂 "+article.category;
 
 
 
     document.getElementById(
     "articleContent"
     ).innerHTML =
+
     article.content;
 
 
-
-    loadComments();
-
-
 }
+// =======================
+// 管理画面の記事一覧
+// =======================
+
+function loadAdminArticles(){
 
 
+    let area =
+    document.getElementById("adminArticles");
 
 
+    if(!area){
 
+        return;
 
+    }
 
-/* ================================
-   記事編集
-================================ */
-
-
-function editArticle(id){
-
-
-    localStorage.setItem(
-
-        "editArticle",
-
-        id
-
-    );
-
-
-    location.href="admin.html";
-
-
-}
-
-
-
-
-
-/* ================================
-   記事削除
-================================ */
-
-
-function deleteArticle(id){
 
 
     let articles =
@@ -537,13 +418,80 @@ function deleteArticle(id){
 
 
 
-    articles =
+    area.innerHTML="";
 
-    articles.filter(
 
-        a => a.id != id
 
-    );
+    articles.forEach(function(article,index){
+
+
+
+        area.innerHTML += `
+
+
+        <article class="card">
+
+
+        <h3>
+
+        ${article.title}
+
+        </h3>
+
+
+
+        <p>
+
+        📂 ${article.category}
+
+        </p>
+
+
+
+        <p>
+
+        状態：
+        ${article.status}
+
+        </p>
+
+
+
+        <button onclick="deleteArticle(${index})">
+
+        🗑️ 削除
+
+        </button>
+
+
+        </article>
+
+
+        `;
+
+
+    });
+
+
+}
+
+
+
+
+
+// =======================
+// 記事削除
+// =======================
+
+function deleteArticle(index){
+
+
+    let articles =
+    getArticles();
+
+
+
+    articles.splice(index,1);
 
 
 
@@ -554,6 +502,10 @@ function deleteArticle(id){
         JSON.stringify(articles)
 
     );
+
+
+
+    alert("記事を削除しました");
 
 
 
@@ -566,384 +518,17 @@ function deleteArticle(id){
 
 
 
-
-
-/* ================================
-   管理画面表示
-================================ */
-
-
-function loadAdminArticles(){
-
-
-    const area =
-
-    document.getElementById(
-    "adminArticles"
-    );
-
-
-
-    if(!area){
-
-        return;
-
-    }
-
-
-
-    let articles =
-    getArticles();
-
-
-
-    area.innerHTML="";
-
-
-
-    articles.forEach(function(article){
-
-
-
-        area.innerHTML += `
-
-
-        <div class="card">
-
-
-        <h3>
-
-        ${article.title}
-
-        </h3>
-
-
-        <p>
-
-        ${article.category}
-
-        |
-
-        ${article.status}
-
-        </p>
-
-
-
-        <button onclick="editArticle(${article.id})">
-
-        編集
-
-        </button>
-
-
-
-        <button onclick="deleteArticle(${article.id})">
-
-        削除
-
-        </button>
-
-
-        </div>
-
-
-        `;
-
-
-    });
-
-
-}
-/* ================================
-   コメント機能
-================================ */
-
-
-function addComment(){
-
-
-    let name =
-
-    document.getElementById(
-    "commentName"
-    ).value;
-
-
-
-    let text =
-
-    document.getElementById(
-    "commentText"
-    ).value;
-
-
-
-    let id =
-
-    localStorage.getItem(
-    "openArticle"
-    );
-
-
-
-    let comments =
-
-    JSON.parse(
-
-    localStorage.getItem(
-    "comments"
-    )
-
-    ) || [];
-
-
-
-    comments.push({
-
-        article:id,
-
-        name:name,
-
-        text:text,
-
-        date:new Date()
-        .toLocaleDateString("ja-JP")
-
-    });
-
-
-
-    localStorage.setItem(
-
-        "comments",
-
-        JSON.stringify(comments)
-
-    );
-
-
-
-    loadComments();
-
-
-}
-
-
-
-
-
-function loadComments(){
-
-
-    const area =
-
-    document.getElementById(
-    "comments"
-    );
-
-
-
-    if(!area){
-
-        return;
-
-    }
-
-
-
-    let id =
-
-    localStorage.getItem(
-    "openArticle"
-    );
-
-
-
-    let comments =
-
-    JSON.parse(
-
-    localStorage.getItem(
-    "comments"
-    )
-
-    ) || [];
-
-
-
-    area.innerHTML="";
-
-
-
-    comments
-
-    .filter(
-
-        c=>c.article==id
-
-    )
-
-    .forEach(function(c){
-
-
-
-        area.innerHTML += `
-
-
-        <div class="comment">
-
-
-        <p class="comment-name">
-
-        ${c.name}
-
-        </p>
-
-
-        <p>
-
-        ${c.text}
-
-        </p>
-
-
-        <small>
-
-        ${c.date}
-
-        </small>
-
-
-        </div>
-
-
-        `;
-
-
-    });
-
-
-}
-
-
-
-
-
-
-
-
-/* ================================
-   人気記事
-================================ */
-
-
-function loadRanking(){
-
-
-    let area =
-
-    document.getElementById(
-    "ranking"
-    );
-
-
-
-    if(!area){
-
-        return;
-
-    }
-
-
-
-    let articles =
-
-    getArticles();
-
-
-
-    articles.sort(
-
-        (a,b)=>
-
-        b.views-a.views
-
-    );
-
-
-
-    area.innerHTML="";
-
-
-
-    articles.slice(0,5)
-
-    .forEach(function(article,index){
-
-
-
-        area.innerHTML += `
-
-
-        <div class="rank-item">
-
-
-        <span class="rank-number">
-
-        ${index+1}
-
-        </span>
-
-
-
-        <p>
-
-        ${article.title}
-
-        <br>
-
-        👁 ${article.views}
-
-        </p>
-
-
-        </div>
-
-
-        `;
-
-
-    });
-
-
-}
-
-
-
-
-
-
-/* ================================
-   検索
-================================ */
-
-
-function searchArticle(){
-
-
-    let word =
-
-    document.getElementById(
-    "search"
-    ).value;
-
+// =======================
+// カテゴリー検索
+// =======================
+
+function filterCategory(category){
 
 
     let cards =
 
     document.querySelectorAll(
-    ".card"
+    "#newArticle .card"
     );
 
 
@@ -951,10 +536,16 @@ function searchArticle(){
     cards.forEach(function(card){
 
 
+
+        let text =
+        card.innerText;
+
+
+
         if(
-
-        card.innerText.includes(word)
-
+        category === "all"
+        ||
+        text.includes(category)
         ){
 
 
@@ -979,11 +570,64 @@ function searchArticle(){
 
 
 
+// =======================
+// 記事検索
+// =======================
 
-/* ================================
-   起動
-================================ */
+function searchArticle(){
 
+
+    let keyword =
+
+    document.getElementById(
+    "search"
+    ).value;
+
+
+
+    let cards =
+
+    document.querySelectorAll(
+    "#newArticle .card"
+    );
+
+
+
+    cards.forEach(function(card){
+
+
+
+        if(
+
+        card.innerText.includes(keyword)
+
+        ){
+
+
+            card.style.display="block";
+
+
+        }else{
+
+
+            card.style.display="none";
+
+
+        }
+
+
+
+    });
+
+
+
+}
+
+
+
+// =======================
+// ページ読み込み
+// =======================
 
 window.onload=function(){
 
@@ -994,273 +638,4 @@ window.onload=function(){
     loadAdminArticles();
 
 
-    loadRanking();
-
-
 };
-/* ================================
-   お問い合わせ
-================================ */
-
-
-function sendContact(){
-
-
-    let name =
-
-    document.getElementById(
-    "contactName"
-    ).value;
-
-
-
-    let email =
-
-    document.getElementById(
-    "contactEmail"
-    ).value;
-
-
-
-    let message =
-
-    document.getElementById(
-    "contactMessage"
-    ).value;
-
-
-
-    let contacts =
-
-    JSON.parse(
-
-    localStorage.getItem(
-    "contacts"
-    )
-
-    ) || [];
-
-
-
-    contacts.push({
-
-
-        name:name,
-
-
-        email:email,
-
-
-        message:message,
-
-
-        date:new Date()
-
-        .toLocaleDateString("ja-JP")
-
-
-    });
-
-
-
-    localStorage.setItem(
-
-        "contacts",
-
-        JSON.stringify(contacts)
-
-    );
-
-
-
-    alert(
-
-    "お問い合わせを送信しました"
-
-    );
-
-
-
-}
-
-
-
-
-
-
-/* ================================
-   ダークモード
-================================ */
-
-
-function darkMode(){
-
-
-    document.body.classList.toggle(
-
-        "dark"
-
-    );
-
-
-}
-
-
-
-
-
-
-/* ================================
-   編集データ読み込み
-================================ */
-
-
-function loadEditArticle(){
-
-
-    let id =
-
-    localStorage.getItem(
-    "editArticle"
-    );
-
-
-
-    if(!id){
-
-        return;
-
-    }
-
-
-
-    let articles =
-    getArticles();
-
-
-
-    let article =
-
-    articles.find(
-
-        a=>a.id==id
-
-    );
-
-
-
-    if(!article){
-
-        return;
-
-    }
-
-
-
-    document.getElementById(
-    "title"
-    ).value =
-    article.title;
-
-
-
-    document.getElementById(
-    "description"
-    ).value =
-    article.description;
-
-
-
-    document.getElementById(
-    "content"
-    ).value =
-    article.content;
-
-
-
-    document.getElementById(
-    "category"
-    ).value =
-    article.category;
-
-
-
-    document.getElementById(
-    "status"
-    ).value =
-    article.status;
-
-
-
-    document.getElementById(
-    "image"
-    ).value =
-    article.image;
-
-
-
-}
-
-
-
-
-
-
-/* ================================
-   Firebase接続用場所
-================================ */
-
-
-/*
-
-あとでここに
-
-Firebase Authentication
-Firebase Firestore
-Firebase Storage
-
-を追加します。
-
-
-現在はテスト用として
-
-localStorage
-
-で動作します。
-
-
-*/
-
-
-
-
-
-/* ================================
-   初期処理
-================================ */
-
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-function(){
-
-
-    loadArticle();
-
-
-    loadAdminArticles();
-
-
-    loadRanking();
-
-
-    loadComments();
-
-
-    loadEditArticle();
-
-
-
-});
