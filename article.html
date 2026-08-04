@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+
+<title>
+記事 | 小6の鉄道ブログ
+</title>
+
+
+
+<meta name="description"
+content="小6の鉄道ブログの記事ページ">
+
+
+<link rel="stylesheet"
+href="style.css">
+
+
+<link rel="icon"
+href="images/icon.png">
+
+
+</head>
+
+
+
+<body>
+
+
+
+<header>
+
+
+<h1>
+
+🚆 小6の鉄道ブログ
+
+</h1>
+
+
+<p>
+
+記事ページ
+
+</p>
+
+
+</header>
+
+
+
+
+
+
+<nav>
+
+
+<a href="index.html">
+
+🏠 ホーム
+
+</a>
+
+
+<a href="articles.html">
+
+📰 記事一覧
+
+</a>
+
+
+</nav>
+
+
+
+
+
+
+<main>
+
+
+
+
+<article class="article-page">
+
+
+
+
+
+<span id="articleCategory"
+class="category">
+
+</span>
+
+
+
+
+
+<h2 id="articleTitle">
+
+</h2>
+
+
+
+
+
+<p id="articleDate"
+class="date">
+
+</p>
+
+
+
+
+
+
+<img id="articleImage"
+src=""
+alt="記事画像">
+
+
+
+
+
+
+<div id="articleContent"
+class="article-content">
+
+</div>
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+<h2>
+
+💬 コメント
+
+</h2>
+
+
+
+
+
+<div class="comment-box">
+
+
+
+<input
+
+id="commentName"
+
+placeholder="名前">
+
+
+
+
+
+<textarea
+
+id="commentText"
+
+placeholder="コメント">
+
+</textarea>
+
+
+
+
+
+<button class="button"
+onclick="addComment()">
+
+送信
+
+</button>
+
+
+
+
+
+<div id="comments">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<a href="articles.html"
+class="button">
+
+← 記事一覧へ戻る
+
+</a>
+
+
+
+
+
+</article>
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+<footer>
+
+
+<p>
+
+© 2026 小6の鉄道ブログ
+
+</p>
+
+
+</footer>
+
+
+
+
+
+
+
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+loadArticlePage();
+
+</script>
+
+
+
+
+</body>
+
+
+</html>
