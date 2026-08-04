@@ -1,0 +1,6 @@
+User-agent: *
+
+Allow: /
+
+
+Sitemap: https://h8619488-coder.github.io/railway-blog/sitemap.xml
