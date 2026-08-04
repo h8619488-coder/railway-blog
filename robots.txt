@@ -1,6 +1,0 @@
-User-agent: *
-
-Allow: /
-
-
-Sitemap: https://h8619488-coder.github.io/あなたのリポジトリ名/sitemap.xml
